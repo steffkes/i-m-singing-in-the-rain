@@ -1,11 +1,23 @@
 version: "3.3"
 services:
 
+  frontend:
+    build:
+      context: ./frontend
+    working_dir: /frontend
+    command: ["pnpm", "run", "dev"]
+    volumes:
+      - ./frontend:/frontend
+    env_file: frontend/.env
+    ports:
+      - 127.0.0.1:4400:3000
+
   backend:
     build:
       context: ./backend
     working_dir: /app
     volumes:
       - ./backend:/app
+    env_file: backend/.env
     ports:
       - 127.0.0.1:4488:80
