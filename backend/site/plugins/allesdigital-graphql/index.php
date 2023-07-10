@@ -63,7 +63,8 @@ $schema = new Schema([
 Kirby::plugin('allesdigital/kirby-graphql', [
     'routes' => [
         [
-            'pattern' => 'graphiql',
+            'pattern' => 'graphql',
+            'method' => 'GET',
             'action'  => function () {
                 return file_get_contents(__DIR__."/graphiql.html");
             }
