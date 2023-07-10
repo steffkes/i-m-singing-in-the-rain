@@ -12,11 +12,13 @@ use GraphQL\Error\DebugFlag;
 use Kirby\Cms\App as Kirby;
 
 function get_page($page_id) {
-    $page = page($page_id)->toArray();
-    if(array_key_exists("content", $page) && array_key_exists("tags", $page["content"])) {
-        $page["content"]["tags"] = explode(", ", $page["content"]["tags"]);
+    $page = page($page_id);
+    $data = $page->toArray();
+    if(array_key_exists("content", $data) && array_key_exists("tags", $data["content"])) {
+        $data["content"]["tags"] = explode(", ", $data["content"]["tags"]);
     }
-    return $page;
+    $data["children"] = $page->children()->toArray();
+    return $data;
 };
 
 $pageType = new ObjectType([
@@ -39,12 +41,7 @@ $pageType = new ObjectType([
                                 'uuid' => Type::string(),
                             ]
                         ]),
-                        'children' => [
-                          "type" => Type::listOf($pageType),
-                          "resolve" => function($page) {
-                          return array_map(fn($page_id) => get_page($page_id), $page["children"]);
-}
-                        ]
+                        'children' => Type::listOf($pageType)
                     ];
                     }
                 ]);
