@@ -41,6 +41,10 @@ const { data: photographyData } = await useKql({
       },
     },
   },
+}, {
+  headers: {
+    host: 'localhost:4488'
+  }
 })
 </script>
 
