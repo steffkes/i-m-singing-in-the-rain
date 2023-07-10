@@ -18,18 +18,48 @@ function get_page($page_id) {
         $data["content"]["tags"] = explode(", ", $data["content"]["tags"]);
     }
     $data["children"] = $page->children()->toArray();
+    $data["files"] = $page->files()->toArray();
     return $data;
 };
 
+$fileType = new ObjectType([
+"name" => "FileType",
+"fields" => [
+  "id" => Type::string(),
+  "hash" => Type::string(),
+  "url" => Type::string(),
+  "type" => Type::string(),
+  "name" => Type::string(),
+  "safeName" => Type::string(),
+  "size" => Type::int(),
+  "niceSize" => Type::string(),
+  "mime" => Type::string(),
+  "extension" => Type::string(),
+  "filename" => Type::string(),
+  "isReadable" => Type::boolean(),
+  "isResizable" => Type::boolean(),
+  "isWritable" => Type::boolean(),
+  "dimensions" => new ObjectType([
+    "name" => "FileDimensionsType",
+    "fields" => [
+      "width" => Type::int(),
+      "height" => Type::int(),
+      "ratio" => Type::float(),
+      "orientation" => Type::string()
+]
+])
+]
+]);
+
 $pageType = new ObjectType([
                     'name' => 'PageType',
-                    'fields' => function() use(&$pageType) {
+                    'fields' => function() use(&$pageType, &$fileType) {
                     return [
                         'id' => Type::string(),
                         'url' => Type::string(),
                         'uuid' => Type::string(),
                         'title' => Type::string(),
-                        'files' => Type::listOf(Type::string()),
+                        'files' => Type::listOf($fileType),
                         'content' => new ObjectType([
                             'name' => 'PageContentType',
                             'fields' => [
