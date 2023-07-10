@@ -11,14 +11,18 @@ use GraphQL\Error\FormattedError;
 use GraphQL\Error\DebugFlag;
 use Kirby\Cms\App as Kirby;
 
-$schema = new Schema([
-    'query' => new ObjectType([
-        'name' => 'Query',
-        'fields' => [
-            'page' => [
-                'type' => new ObjectType([
+function get_page($page_id) {
+    $page = page($page_id)->toArray();
+    if(array_key_exists("content", $page) && array_key_exists("tags", $page["content"])) {
+        $page["content"]["tags"] = explode(", ", $page["content"]["tags"]);
+    }
+    return $page;
+};
+
+$pageType = new ObjectType([
                     'name' => 'PageType',
-                    'fields' => [
+                    'fields' => function() use(&$pageType) {
+                    return [
                         'id' => Type::string(),
                         'url' => Type::string(),
                         'uuid' => Type::string(),
@@ -35,18 +39,27 @@ $schema = new Schema([
                                 'uuid' => Type::string(),
                             ]
                         ]),
-                        'children' => Type::listOf(Type::string()),
-                    ]
-                ]),
+                        'children' => [
+                          "type" => Type::listOf($pageType),
+                          "resolve" => function($page) {
+                          return array_map(fn($page_id) => get_page($page_id), $page["children"]);
+}
+                        ]
+                    ];
+                    }
+                ]);
+
+$schema = new Schema([
+    'query' => new ObjectType([
+        'name' => 'Query',
+        'fields' => [
+            'page' => [
+                'type' => $pageType,
                 'args' => [
                     'page_id' => Type::nonNull(Type::string()),
                 ],
                 'resolve' => function ($rootValue, array $args) {
-                    $page = page($args["page_id"])->toArray();
-                    if(array_key_exists("content", $page) && array_key_exists("tags", $page["content"])) {
-                        $page["content"]["tags"] = explode(", ", $page["content"]["tags"]);
-                    }
-                    return $page;
+                    return get_page($args["page_id"]);
                 }
             ],
             'echo' => [
