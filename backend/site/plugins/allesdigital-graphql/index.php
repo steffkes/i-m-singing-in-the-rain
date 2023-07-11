@@ -10,6 +10,8 @@ use GraphQL\Utils\BuildSchema;
 use GraphQL\Error\FormattedError;
 use GraphQL\Error\DebugFlag;
 use GraphQL\Type\Definition\EnumType;
+use GraphQL\Type\Definition\InterfaceType;
+use GraphQL\Type\Definition\ResolveInfo;
 use Kirby\Cms\App as Kirby;
 
 $fileType = new ObjectType([
@@ -74,9 +76,101 @@ return [
 ]; },
 ]);
 
+$blockInterface = new InterfaceType([
+    'name' => 'BlockInterface',
+    'fields' => [
+        'id' => Type::string(),
+        'html' => Type::string(),
+        'type' => Type::string(),
+    ],
+    'resolveType' => function($block) use(&$blockTypes): ObjectType {
+      return $blockTypes[$block["type"]] ?? $blockTypes["_fallback"];
+    }
+]);
+
+$blockTypes = [
+"_fallback" => new ObjectType([
+                    'name' => 'FallbackBlockType',
+                    'interfaces' => [$blockInterface],
+                    'fields' => [
+                        $blockInterface->getField("id"),
+                        $blockInterface->getField("type"),
+                        $blockInterface->getField("html"),
+                    ]
+                ]),
+                "text" => new ObjectType([
+                    'name' => 'TextBlockType',
+                    'interfaces' => [$blockInterface],
+                    'fields' => [
+                        $blockInterface->getField("id"),
+                        $blockInterface->getField("type"),
+                        $blockInterface->getField("html"),
+                    ]
+                ]),
+"video" => new ObjectType([
+                    'name' => 'VideoBlockType',
+                    'interfaces' => [$blockInterface],
+                    'fields' => [
+                        $blockInterface->getField("id"),
+                        $blockInterface->getField("type"),
+                        $blockInterface->getField("html"),
+                        "caption" => [
+                          "type" => Type::string(),
+                          "resolve" => fn ($block) => $block["_raw"]->content()->get("caption"),
+                        ],
+                        "url" => [
+                            "type" => Type::string(),
+                            "resolve" => fn($block) => $block["_raw"]->content()->get("url"),
+                        ],
+                    ],
+                ]),
+"image" => new ObjectType([
+                    'name' => 'ImageBlockType',
+                    'interfaces' => [$blockInterface],
+                    'fields' => [
+                        $blockInterface->getField("id"),
+                        $blockInterface->getField("type"),
+                        $blockInterface->getField("html"),
+                        "image" => [
+                            "type" => $fileType,
+                            "resolve" => function($block) {
+                                return ["url" => $block["_raw"]->content()->get("location")];
+                            },
+                        ],
+                    ],
+                ]),
+"gallery" => new ObjectType([
+                    'name' => 'GalleryBlockType',
+                    'interfaces' => [$blockInterface],
+                    'fields' => [
+                        $blockInterface->getField("id"),
+                        $blockInterface->getField("type"),
+                        $blockInterface->getField("html"),
+                        "caption" => [
+                          "type" => Type::string(),
+                          "resolve" => function($block) {
+                            return $block["_raw"]->content()->get("caption");
+                          }
+                        ],
+                        "ratio" => [
+                          "type" => Type::string(),
+                          "resolve" => function($block) {
+                            return $block["_raw"]->content()->get("ratio");
+                          }
+                        ],
+                        "images" => [
+                            "type" => Type::listOf($fileType),
+                            "resolve" => function($block) {
+                                return [["url" => "img1"], ["url" => "img2"]];
+                            },
+                        ],
+                    ],
+                ])
+];
+
 $pageType = new ObjectType([
                     'name' => 'PageType',
-                    'fields' => function() use(&$pageType, &$fileType) {
+                    'fields' => function() use(&$pageType, &$fileType, &$blockInterface) {
                     return [
                         'id' => Type::string(),
                         'url' => Type::string(),
@@ -93,6 +187,7 @@ $pageType = new ObjectType([
                                 'tags' => Type::listOf(Type::string()),
                                 'uuid' => Type::string(),
                                 'cover' => $fileType,
+                                'blocks' => Type::listOf($blockInterface),
                             ]
                         ]),
                         'children' => Type::listOf($pageType)
@@ -110,6 +205,15 @@ function prepare_page($page) {
         $data["content"]["cover"] = $cover->toArray();
         $data["content"]["cover"]["_raw"] = $cover;
     }
+    $blocks = $page->text()->toBlocks()->toArray(function ($block) {
+      $data = $block->toArray();
+      $data["html"] = $block->toHtml();
+      $data["_raw"] = $block;
+      return $data;
+    });
+    if($blocks) {
+        $data["content"]["blocks"] = $blocks;
+    }
     $data["children"] = $page->children()->toArray(fn($page) => prepare_page($page));
     $data["files"] = $page->files()->toArray(function ($file) {
     $data = $file->toArray();
@@ -120,6 +224,7 @@ function prepare_page($page) {
 }
 
 $schema = new Schema([
+'types' => $blockTypes,
     'query' => new ObjectType([
         'name' => 'Query',
         'fields' => [
