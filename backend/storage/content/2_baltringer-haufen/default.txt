@@ -2,7 +2,7 @@ Title: Baltringer Haufen
 
 ----
 
-Blocks: [{"content":{"title":"Baltringer Haufen","cover":["file://9wOAuD8SY2O6hL0z"],"fullscreen":"false"},"id":"b5a407c3-5df3-490a-a293-4fc8ea13873f","isHidden":false,"type":"hero"}]
+Blocks: [{"content":{"title":"Baltringer Haufen","cover":["file://9wOAuD8SY2O6hL0z"],"fullscreen":"false"},"id":"b5a407c3-5df3-490a-a293-4fc8ea13873f","isHidden":false,"type":"hero"},{"content":{"title":"","text":"Der Baltringer Haufen, ein Teil des Laupheimer Sängerbundes, ist eine Gruppe, die ihre Wurzeln im Bauernkrieg von 1524/25 hat und ein Zusammenschluss von Bauern und Handwerkern war, der zur Christlichen Vereinigung gehörte.\n\nHeutzutage wird die Geschichte des Baltringer Haufens jedes Jahr beim Laupheimer Kinder- und Heimatfest im historischen Teil der Hasengrube lebendig. Hier präsentieren wir stolz unsere Traditionen und geben einen Einblick in vergangene Zeiten.\n\nDer Baltringer Haufen besteht aus verschiedenen Gruppen, darunter ein Bauernchor, Trommler:innen und Pfeifen, Tänzer:innen und Gaukler. Gemeinsam bringen wir die Atmosphäre vergangener Tage wieder zum Leben und sorgen für eine mitreißende Vorstellung.\n\nDer Baltringer Haufen lädt alle Interessierten ein, an unserer lebendigen Tradition teilzuhaben. Ob als Mitglied des Bauernchors, als Trommler:in oder Pfeifer:in, als Tänzer:in oder Gaukler, wir freuen uns über jede neue Stimme und jedes Talent, das unsere Gruppe bereichert. Tauchen Sie ein in die faszinierende Welt des Baltringer Haufens und erleben Sie die Magie vergangener Zeiten bei unseren Auftritten und Veranstaltungen.","image":["file://Wl780UHNqFq8ksjR"]},"id":"44ba1a6b-2201-4109-9826-c51cbbade7d3","isHidden":false,"type":"content"}]
 
 ----
 

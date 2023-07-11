@@ -20,7 +20,9 @@
   },
   "devDependencies": {
     "@nuxt/eslint-config": "^0.1.1",
+    "@nuxtjs/tailwindcss": "^6.8.0",
     "@sindresorhus/slugify": "^2.2.1",
+    "@tailwindcss/typography": "^0.5.9",
     "@types/node": "^18.16.18",
     "@vueuse/nuxt": "^10.2.0",
     "eslint": "^8.43.0",

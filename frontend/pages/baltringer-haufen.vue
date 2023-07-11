@@ -6,15 +6,10 @@
 
 <script setup lang="ts">
 const { data } = await useKql({
-  query: 'page("home")',
+  query: `page("${useRoute().path}")`,
   select: {
-    id: true,
-    title: true,
-    blocks: "page.blocks.toBlocks",
-    images: {
-      query: "site.images"
-    }
-  },
+    blocks: "page.blocks.toBlocks"
+  }
 })
 
 // Set the current page data for the global page context
