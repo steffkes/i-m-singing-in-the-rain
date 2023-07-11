@@ -92,6 +92,7 @@ $pageType = new ObjectType([
                                 'text' => Type::string(),
                                 'tags' => Type::listOf(Type::string()),
                                 'uuid' => Type::string(),
+                                'cover' => $fileType,
                             ]
                         ]),
                         'children' => Type::listOf($pageType)
@@ -113,6 +114,11 @@ $schema = new Schema([
                     $data = $page->toArray();
                     if(array_key_exists("content", $data) && array_key_exists("tags", $data["content"])) {
                         $data["content"]["tags"] = explode(", ", $data["content"]["tags"]);
+                    }
+                    if(array_key_exists("content", $data) && array_key_exists("cover", $data["content"])) {
+                        $cover = $page->content()->cover()->toFile();
+                        $data["content"]["cover"] = $cover->toArray();
+                        $data["content"]["cover"]["_raw"] = $cover;
                     }
                     $data["children"] = $page->children()->toArray();
                     $data["files"] = $page->files()->toArray(function ($file) {
