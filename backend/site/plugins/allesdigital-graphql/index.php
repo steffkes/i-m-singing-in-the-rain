@@ -100,6 +100,25 @@ $pageType = new ObjectType([
                     }
                 ]);
 
+function prepare_page($page) {
+    $data = $page->toArray();
+    if(array_key_exists("content", $data) && array_key_exists("tags", $data["content"])) {
+        $data["content"]["tags"] = explode(", ", $data["content"]["tags"]);
+    }
+    $cover = $page->content()->cover()->toFile();
+    if($cover) {
+        $data["content"]["cover"] = $cover->toArray();
+        $data["content"]["cover"]["_raw"] = $cover;
+    }
+    $data["children"] = $page->children()->toArray(fn($page) => prepare_page($page));
+    $data["files"] = $page->files()->toArray(function ($file) {
+    $data = $file->toArray();
+    $data["_raw"] = $file;
+    return $data;
+    });
+    return $data;
+}
+
 $schema = new Schema([
     'query' => new ObjectType([
         'name' => 'Query',
@@ -110,23 +129,7 @@ $schema = new Schema([
                     'page_id' => Type::nonNull(Type::string()),
                 ],
                 'resolve' => function ($rootValue, array $args) {
-                    $page = page($args["page_id"]);
-                    $data = $page->toArray();
-                    if(array_key_exists("content", $data) && array_key_exists("tags", $data["content"])) {
-                        $data["content"]["tags"] = explode(", ", $data["content"]["tags"]);
-                    }
-                    if(array_key_exists("content", $data) && array_key_exists("cover", $data["content"])) {
-                        $cover = $page->content()->cover()->toFile();
-                        $data["content"]["cover"] = $cover->toArray();
-                        $data["content"]["cover"]["_raw"] = $cover;
-                    }
-                    $data["children"] = $page->children()->toArray();
-                    $data["files"] = $page->files()->toArray(function ($file) {
-                    $data = $file->toArray();
-                    $data["_raw"] = $file;
-                    return $data;
-                    });
-                    return $data;
+                    return prepare_page(page($args["page_id"]));
                 }
             ],
             'echo' => [
