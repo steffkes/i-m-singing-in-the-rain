@@ -29,6 +29,3 @@ columns:
       phone:
         label: Telefonnummer
         type: tel
-      mail:
-        label: E-Mail
-        type: email
