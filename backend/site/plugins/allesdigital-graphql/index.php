@@ -12,21 +12,6 @@ use GraphQL\Error\DebugFlag;
 use GraphQL\Type\Definition\EnumType;
 use Kirby\Cms\App as Kirby;
 
-function get_page($page_id) {
-    $page = page($page_id);
-    $data = $page->toArray();
-    if(array_key_exists("content", $data) && array_key_exists("tags", $data["content"])) {
-        $data["content"]["tags"] = explode(", ", $data["content"]["tags"]);
-    }
-    $data["children"] = $page->children()->toArray();
-    $data["files"] = $page->files()->toArray(function ($file) {
-      $data = $file->toArray();
-      $data["_raw"] = $file;
-      return $data;
-    });
-    return $data;
-};
-
 $fileType = new ObjectType([
 "name" => "FileType",
 "fields" => function() use(&$fileType) {
@@ -124,7 +109,18 @@ $schema = new Schema([
                     'page_id' => Type::nonNull(Type::string()),
                 ],
                 'resolve' => function ($rootValue, array $args) {
-                    return get_page($args["page_id"]);
+                    $page = page($args["page_id"]);
+                    $data = $page->toArray();
+                    if(array_key_exists("content", $data) && array_key_exists("tags", $data["content"])) {
+                        $data["content"]["tags"] = explode(", ", $data["content"]["tags"]);
+                    }
+                    $data["children"] = $page->children()->toArray();
+                    $data["files"] = $page->files()->toArray(function ($file) {
+                    $data = $file->toArray();
+                    $data["_raw"] = $file;
+                    return $data;
+                    });
+                    return $data;
                 }
             ],
             'echo' => [
