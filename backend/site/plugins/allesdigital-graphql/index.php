@@ -9,6 +9,7 @@ use GraphQL\Type\Definition\Type;
 use GraphQL\Utils\BuildSchema;
 use GraphQL\Error\FormattedError;
 use GraphQL\Error\DebugFlag;
+use GraphQL\Type\Definition\EnumType;
 use Kirby\Cms\App as Kirby;
 
 function get_page($page_id) {
@@ -61,6 +62,29 @@ return [
         'quality' => ["type" => Type::int(), "defaultValue" => null],
     ],
     "resolve" => fn ($image, $args) => $image["_raw"]->resize($args["width"], $args["height"], $args["quality"])->toArray()
+  ],
+  "cropped" => [
+    "type" => $fileType,
+    'args' => [
+        'width' => ["type" => Type::int(), "defaultValue" => null],
+        'height' => ["type" => Type::int(), "defaultValue" => null],
+        'quality' => ["type" => Type::int(), "defaultValue" => null],
+        'crop' => ["type" => new EnumType([
+    'name' => 'CropPositionType',
+    'values' => [
+    "TOP_LEFT" => ["value" => "top left"],
+    "TOP" => ["value" => "top"],
+    "TOP_RIGHT" => ["value" => "top right"],
+    "LEFT" => ["value" => "left"],
+    "CENTER" => ["value" => "center"],
+    "RIGHT" => ["value" => "right"],
+    "BOTTOM_LEFT" => ["value" => "bottom left"],
+    "BOTTOM" => ["value" => "bottom"],
+    "BOTTOM_RIGHT" => ["value" => "bottom right"],
+    ]
+]), "defaultValue" => null],
+    ],
+    "resolve" => fn ($image, $args) => $image["_raw"]->crop($args["width"], $args["height"], ["quality" => $args["quality"], "crop" => $args["crop"]])->toArray()
   ]
 ]; },
 ]);
