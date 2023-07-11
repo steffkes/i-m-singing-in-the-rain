@@ -1,6 +1,5 @@
 title: Neuigkeiten
-
-icon: 📖
+icon: book
 
 options:
   preview: "{{ page.frontendUrl }}"

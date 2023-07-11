@@ -2,7 +2,13 @@ Title: Sängerbund Laupheim e.V.
 
 ----
 
-Nav: 
+Nav:
+
+- page://o8fAA8DPRQwYjEqo
+- page://kcJUltGUMZeVt14u
+- page://DrHcOatiLMqgrO7X
+- page://9oiRgCMk8Vh2Oe6l
+- page://DlmpFwgt3FiYgWdF
 
 ----
 
@@ -12,4 +18,11 @@ Contacts:
   title: >
     Sängerbund Cäcilia-Concordia Laupheim
     1858 e.V.
-  contact: [ ]
+  contact:
+    - user://TQEuiUYi
+- 
+  title: >
+    Förderverein Cäcilia-Concordia
+    Laupheim 1858 e.V.
+  contact:
+    - user://vPkOqF4l
