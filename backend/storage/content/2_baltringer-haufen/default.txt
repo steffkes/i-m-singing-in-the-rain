@@ -1,0 +1,13 @@
+Title: Baltringer Haufen
+
+----
+
+Blocks: [{"content":{"title":"Baltringer Haufen","cover":["file://9wOAuD8SY2O6hL0z"],"fullscreen":"false"},"id":"b5a407c3-5df3-490a-a293-4fc8ea13873f","isHidden":false,"type":"hero"}]
+
+----
+
+Uuid: kcJUltGUMZeVt14u
+
+----
+
+Layout: 

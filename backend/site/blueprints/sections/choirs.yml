@@ -1,0 +1,13 @@
+type: pages
+label: Chöre
+parent: kirby.page("choere")
+info: "{{ page.published }}"
+template: choir
+empty: Keine Chöre
+sortBy: date desc
+layout: cards
+size: tiny
+image:
+  query: page.cover.toFile
+  cover: true
+  ratio: 3/2

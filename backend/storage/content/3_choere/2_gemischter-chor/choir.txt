@@ -1,0 +1,38 @@
+Title: Gemischter Chor
+
+----
+
+Description:
+
+Der Gemischte Chor des Laupheimer Sängerbundes ist ein traditionsreicher und dynamischer Chor mit etwa 40 Damen und Herren. Mit Freude, Konzentration und großem Engagement widmen wir uns dem Gesang und der Musik.
+
+Unser Repertoire ist bunt und vielfältig. Es umfasst klassische Chormusik, beliebte Songs von Künstlern wie den Beatles und ABBA sowie heitere Schlager der letzten 100 Jahre. Auch Weltmusik aus den entferntesten Ländern und neue Arrangements von britischen Pop-Bands wie Keane finden ihren Platz in unserem Programm.
+
+Bei der Auswahl unserer Lieder haben alle Chormitglieder die Möglichkeit, sich einzubringen. Dadurch stellen wir sicher, dass für jeden Geschmack etwas dabei ist.
+
+Unsere wöchentlichen Chorproben finden immer mittwochs um 18:30 Uhr im evangelischen Gemeindehaus in der Schillerstraße statt. In dieser vertrauten und angenehmen Atmosphäre arbeiten wir gemeinsam an unserem Klang und der Interpretation der Stücke. Im Anschluss pflegen wir das soziale Miteinander bei einem regelmäßigen Treffen in einem der Laupheimer Restaurants. Denn für uns gehören musikalische und persönliche Beziehungen untrennbar zusammen.
+
+Wir freuen uns über jede neue Stimme, die unseren Chor bereichert. Kommen Sie vorbei und erleben Sie die Freude am Singen in einer herzlichen Gemeinschaft.
+
+----
+
+Cover: - file://Tm6Y8Oo2KzP8E7kr
+
+----
+
+Rehearsals:
+
+- 
+  day: Mittwoch
+  time: 18:30 Uhr
+  location: >
+    Evangelisches Gemeindehaus,
+    Schillerstraße 9
+
+----
+
+Contact: - user://MMk5IDQm
+
+----
+
+Uuid: 9oiRgCMk8Vh2Oe6l

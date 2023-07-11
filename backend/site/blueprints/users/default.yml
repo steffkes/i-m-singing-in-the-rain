@@ -9,33 +9,26 @@ title: User
 columns:
   - width: 1/2
     fields:
+      role:
+        label: Rolle
+        type: text
       street:
-        label: Street
+        label: Straße
         type: text
       zip:
-        label: ZIP
+        label: Postleitzahl
         type: text
         width: 1/4
       city:
-        label: City
+        label: Stadt
         type: text
         width: 3/4
-      country:
-        label: Country
-        type: text
 
   - width: 1/2
     fields:
-      website:
-        label: Website
-        type: url
-      twitter:
-        label: Twitter
-        type: text
-        icon: twitter
-        placeholder: @username
-      instagram:
-        label: Instagram
-        type: text
-        icon: instagram
-        placeholder: username
+      phone:
+        label: Telefonnummer
+        type: tel
+      mail:
+        label: E-Mail
+        type: email

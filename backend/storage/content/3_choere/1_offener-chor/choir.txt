@@ -1,0 +1,40 @@
+Title: Offener Chor
+
+----
+
+Description:
+
+Der Offene Chor des Laupheimer Sängerbundes ist ein sympathisches Team von Hobbysängern, das sich jeden Mittwoch um 20 Uhr zur gemeinsamen Probe trifft. In unserer Gemeinschaft pflegen wir eine herzliche und unterstützende Atmosphäre.
+
+Unser Liedgut erstreckt sich über eine breite Palette von klassischer bis moderner Popmusik, wobei der moderne Teil einen größeren Schwerpunkt einnimmt. Wir singen mit Begeisterung Stücke von Künstlern wie Queen, aus dem Film "The Greatest Showman", aus "Grease", von Freddy Quinn, Michael Jackson und Max Raabe. Gleichzeitig finden auch Werke von Komponisten wie Rutter, Brahms oder Schubert ihren Platz in unserem Repertoire.
+
+Ein Höhepunkt unseres Chorjahres sind unsere 1-2 Konzerte, die an verschiedenen Auftrittsorten stattfinden. Hier haben wir die Möglichkeit, unser Können einer breiten Öffentlichkeit zu präsentieren und musikalische Erlebnisse zu teilen.
+
+Alle paar Jahre veranstalten wir zudem ein gemeinsames Chorprobenwochenende. Bei diesem intensiven und inspirierenden Musizierwochenende stärken wir nicht nur unseren Zusammenhalt, sondern vertiefen auch unsere musikalischen Fähigkeiten.
+
+Wir heißen alle, die Spaß am Singen haben, herzlich willkommen, sich unserem Offenen Chor anzuschließen. Bei uns können Sie Ihre Leidenschaft für Musik ausleben und in einer freundschaftlichen Gemeinschaft wachsen. Kommen Sie vorbei und erleben Sie die Freude am Singen mit Gleichgesinnten.
+
+----
+
+Cover: - file://SYGy0CxAlEQ8L2VX
+
+----
+
+Rehearsals:
+
+- 
+  day: Donnerstag
+  time: 19:00 Uhr
+  location: Musikschule Laupheim
+- 
+  day: Freitag
+  time: 20:15 Uhr
+  location: Musikschule Laupheim
+
+----
+
+Contact: 
+
+----
+
+Uuid: DrHcOatiLMqgrO7X

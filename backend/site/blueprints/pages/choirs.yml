@@ -1,6 +1,5 @@
-title: Neuigkeiten
-
-icon: 📖
+title: Chöre
+icon: file-audio
 
 options:
   preview: "{{ page.frontendUrl }}"
@@ -9,19 +8,19 @@ columns:
   - width: 1/3
     sections:
       drafts:
-        extends: sections/notes
+        extends: sections/choirs
         label: Entwurf
         status: draft
 
       unlisted:
-        extends: sections/notes
+        extends: sections/choirs
         label: In Überprüfung
         status: unlisted
 
   - width: 2/3
     sections:
       listed:
-        extends: sections/notes
+        extends: sections/choirs
         label: Veröffentlicht
         status: listed
         size: small

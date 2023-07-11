@@ -1,0 +1,5 @@
+label: Blöcke
+type: blocks
+fieldsets:
+  - hero
+  - content

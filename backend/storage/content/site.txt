@@ -1,1 +1,15 @@
-Title: Mægazine
+Title: Sängerbund Laupheim e.V.
+
+----
+
+Nav: 
+
+----
+
+Contacts:
+
+- 
+  title: >
+    Sängerbund Cäcilia-Concordia Laupheim
+    1858 e.V.
+  contact: [ ]

@@ -1,0 +1,12 @@
+title: Hero
+icon: 🦸🏽‍♂️
+
+fields:
+  title:
+    type: text
+  cover: fields/cover
+  fullscreen:
+    type: toggle
+    text: 
+      - "nein"
+      - "ja"

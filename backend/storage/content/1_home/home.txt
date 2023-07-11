@@ -1,0 +1,17 @@
+Title: Home
+
+----
+
+Blocks: [{"content":{"title":"Sängerbund Laupheim e.V","cover":["file://SYGy0CxAlEQ8L2VX"],"fullscreen":"true"},"id":"93fc5af0-1c5e-4de5-bb99-d65d7539b121","isHidden":false,"type":"hero"}]
+
+----
+
+Headline: Welcome to Kirby's Starterkit
+
+----
+
+Subheadline: A fully documented example project
+
+----
+
+Uuid: o8fAA8DPRQwYjEqo

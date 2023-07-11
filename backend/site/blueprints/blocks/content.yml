@@ -1,0 +1,16 @@
+title: Content Block
+icon: 📝
+
+fields:
+  title:
+    type: text
+  text:
+    type: textarea
+    size: medium
+  image:
+    label: Bild
+    type: files
+    uploads:
+      parent: site
+      template: image
+    multiple: false

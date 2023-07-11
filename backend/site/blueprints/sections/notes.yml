@@ -3,13 +3,13 @@
 # Sections can have different layouts and display additional information or a preview image
 # More about pages sections: https://getkirby.com/docs/reference/panel/sections/pages
 type: pages
-label: Notes
-parent: kirby.page("notes")
+label: Neuigkeiten
+parent: kirby.page("neuigkeiten")
 info: "{{ page.published }}"
 template: note
-empty: No notes yet
+empty: Keine Neuigkeiten
 sortBy: date desc
 image:
-  query: page.cover
+  query: page.cover.toFile
   cover: true
   ratio: 3/2
