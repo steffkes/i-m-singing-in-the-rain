@@ -18,13 +18,18 @@ function get_page($page_id) {
         $data["content"]["tags"] = explode(", ", $data["content"]["tags"]);
     }
     $data["children"] = $page->children()->toArray();
-    $data["files"] = $page->files()->toArray();
+    $data["files"] = $page->files()->toArray(function ($file) {
+      $data = $file->toArray();
+      $data["_raw"] = $file;
+      return $data;
+    });
     return $data;
 };
 
 $fileType = new ObjectType([
 "name" => "FileType",
-"fields" => [
+"fields" => function() use(&$fileType) {
+return [
   "id" => Type::string(),
   "hash" => Type::string(),
   "url" => Type::string(),
@@ -47,8 +52,17 @@ $fileType = new ObjectType([
       "ratio" => Type::float(),
       "orientation" => Type::string()
 ]
-])
-]
+]),
+  "resized" => [
+    "type" => $fileType,
+    'args' => [
+        'width' => ["type" => Type::int(), "defaultValue" => null],
+        'height' => ["type" => Type::int(), "defaultValue" => null],
+        'quality' => ["type" => Type::int(), "defaultValue" => null],
+    ],
+    "resolve" => fn ($image, $args) => $image["_raw"]->resize($args["width"], $args["height"], $args["quality"])->toArray()
+  ]
+]; },
 ]);
 
 $pageType = new ObjectType([
